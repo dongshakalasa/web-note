@@ -1,4 +1,4 @@
-# Git总结：
+# Git
 
 ## 1、Git的三个工作区
 
@@ -11,7 +11,7 @@
 - git help config
 - git config -h
 
-## 3、工作流程
+## 3、本地仓库
 
 ### ①、初始化仓库
 
@@ -86,7 +86,7 @@ git rm --cached 需要移除的文件
 
 .**gitignore文件例子**：
 
-![image-20220606105813178](截图\Git\image-20220606105813178.png)
+![image-20220606105813178](截图\image-20220606105813178.png)
 
 ### ⑧、查看提交历史
 
@@ -123,5 +123,22 @@ git log -2 --pretty=format:"%h | %an | %ar | %s"
     git reset --hard <CommitID>
 ```
 
-# GitHub总结：
 
+
+## 4、遇到的问题
+
+### 1、remote origin already exists.
+
+- 描述：报错远程起源已经存在。
+- 解决方法：
+  - 先输入：git remote rm origin
+  - 再输入：git remote add origin**************
+  - 最后输入：git push origin master 
+
+### 2、src refspec main does not match any
+
+- 描述：giihub默认创建的分支时main，本地是master
+- 解决方法：
+  - git branch -m master main（切换分支）
+  - git remote add origin**************
+  - git push origin main
