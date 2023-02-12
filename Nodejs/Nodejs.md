@@ -779,7 +779,7 @@ app.get('/index.html', (req, res) => {
 
 服务端渲染推荐使用 Session 认证机制
 
-![session身份验证](截图\NodeJs\session身份验证.png)
+![session身份验证](截图\session身份验证.png)
 
 Express 中使用 Session 认证
 
@@ -852,7 +852,7 @@ JWT 工作原理图：
 
 用户的信息通过 Token 字符串的形式，保存在客户端浏览器中。服务器通过还原 Token 字符串的形式来认证用户的身份。
 
-![jwt工作原理图](截图\NodeJs\jwt工作原理图.png)
+![jwt工作原理图](截图\jwt工作原理图.png)
 
 JWT 组成部分：
 
