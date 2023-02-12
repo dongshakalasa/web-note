@@ -137,8 +137,16 @@ git log -2 --pretty=format:"%h | %an | %ar | %s"
 
 ### 2、src refspec main does not match any
 
-- 描述：giihub默认创建的分支时main，本地是master
+- 描述：github默认创建的分支时main，本地是master
 - 解决方法：
   - git branch -m master main（切换分支）
   - git remote add origin**************
   - git push origin main
+
+### 3、failed to push some refs to ‘git@github.com:xxxx/git-demo.git‘
+
+- 描述：更改仓库名
+- 解决方法：
+  - git pull --rebase origin master
+  - git push -u origin master
+  - git push --set-upstream origin master
