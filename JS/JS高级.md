@@ -20,18 +20,18 @@
 
 ### 1.2、判断
 
-- **typeof**
-  - 返回数据数据类型的**字符串表达式**
-  - 可以判断**undefined / 数值 / 字符串 / 布尔值**
-  - **不能判断：null与object object与array**
-- **instanceof**
-  - 判断**对象**的具体类型
-- **===**
-  - 可以判断：**undefined，null**
+- typeof
+  - 返回数据数据类型的字符串表达式
+  - 可以判断undefined / 数值 / 字符串 / 布尔值
+  - 不能判断：null与object object与array
+- instanceof
+  - 判断对象的具体类型
+- ===
+  - 可以判断：undefined，null
 
 ### 1.3、相关问题
 
-- **undefined**与**null**的区别？
+- undefined与null的区别？
   - undefined代表定义未赋值
   - null定义并赋值了，只是值为null
 - 什么时候给变量赋值为null呢？
@@ -84,9 +84,9 @@
 
 - 关于赋值和内存的问题
   - 问题：var a = xxx，内存中到底保存的是什么？
-    - xxx是基本数据，保存的就是这个数据
-    - xxx是对象，保存的是对象的地址值
-    - xxx是一个变量，保存的就是xxx的内存内容（可能是基本数据，也可能是地址值）
+    1. xxx是基本数据，保存的就是这个数据
+    2. xxx是对象，保存的是对象的地址值
+    3. xxx是一个变量，保存的就是xxx的内存内容（可能是基本数据，也可能是地址值）
   
 - 关于引用变量赋值问题
 
@@ -189,9 +189,9 @@ var fn2 = function() {	//表达式
 ⑤、回调函数
 
 - 什么函数才是回调函数？
-  1. 你定义的
-  2. 你没有调用
-  3. 但最终它执行了
+  - 你定义的
+  - 你没有调用
+  - 但最终它执行了
 
 - 常见的回调函数？
 
@@ -249,22 +249,22 @@ var fn2 = function() {	//表达式
 ### 1.2、显式原型与隐式原型
 
 - 每个函数function都有一个prototype，即显式原型（属性）
-- 每个实例对象都有一个____proto[______][下划线]，可称为隐式原型（属性）
+- 每个实例对象都有一个\__proto__，可称为隐式原型（属性）
 - 对象的隐式原型的值为其对应构造函数的显式原型的值
 - 内存结构（图）
 
-![](H:\笔记\截图\JS进阶\原型对象)
+![](截图\原型对象)
 
 
-![image-20220609180939120](H:\笔记\截图\JS进阶\原型链)
+![image-20220609180939120](截图\原型链)
 
 ①、构造函数/原型/实例对象的关系（图解）
 
-![image-20220609202541538](H:\笔记\截图\JS进阶\关系图1)
+![image-20220609202541538](截图\关系图1)
 
 ②、构造函数/原型/实例对象的关系2（图解）
 
-![image-20220609202829809](H:\笔记\截图\JS进阶\关系图2)
+![image-20220609202829809](截图\关系图2)
 
 ③、原型继承
 
@@ -596,7 +596,406 @@ function showTime(msg,times) {
 理解：使用that保存了obj的this，同时使用了闭包
 ```
 
+# 三、面向对象高级
 
+## 1、对象的创建模式
+
+### 1.1、Object构造函数模式
+
+- 套路：先创建空Object对象，再动态添加属性/方法
+- 使用场景：起始时不确定对象内部数据
+- 问题：语句太多
+- 实例：
+
+```js
+var p = new Object()
+p.name = 'zs'
+p.age = 18
+p.setName = function(name) {
+	this.name = name
+}
+```
+
+
+
+### 1.2、对象字面量
+
+- 套路：使用{}创建对象，同时指定属性/方法
+- 使用场景：起始时对象内部数据是确定的
+- 问题：如果创建多个对象，有重复代码
+- 实例：
+
+```
+var p = {
+	name: 'zs',
+	age: 12,
+	setName: function(name) {
+		this.name = name
+	}
+}
+```
+
+
+
+### 1.3、工厂模式
+
+- 套路：通过工厂函数动态创建对象并返回
+- 使用场景：需要创建多个对象
+- 问题：对象没有一个具体的类型
+- 实例
+
+```
+function createPserson(name age) {
+	var obj = {
+		name: name,
+		age: age,
+		setName:function (name) {
+			this.name = name
+		}
+	}
+	return obj
+}
+```
+
+### 1.4、自定义构造函数模式
+
+- 套路：自定义构造函数，通过new创建对象
+- 使用场景：需要创建多个类型确定的对象
+- 问题：每个对象都有相同的数据，浪费内存
+
+```js
+function Person(name,age) {
+	this.name = name
+	this.age = age
+	this.setName = function(name) {
+		this.name = name
+	}
+}
+```
+
+### 1.5、构造函数 + 原型的组合模式
+
+- 套路：自定义的构造函数，属性在函数中初始化，方法添加到原型上
+- 使用场景：需要创建多个类型确定的对象
+
+```js
+function Person(name,age) {
+	this.name = name
+	this.age = age
+}
+Person.prototype.setName = function(name) {
+	this.name = name
+}
+```
+
+## 2、继承模式
+
+### 2.1、原型链继承
+
+- 套路
+  1. 定义父类型构造函数
+  2. 给父类型的原型添加方法
+  3. 定义子类型的构造函数
+  4. 创建父类型的对象赋值给子类型的原型
+  5. 将子类型原型的构造属性设置为子类型
+  6. 给子类型的原型添加方法
+  7. 创建子类型的对象：可以调用父类型的方法
+
+- 实例
+
+```
+//父类型
+function fu() {
+	this.fName = 'zs'
+}
+fn.prototype.showFName = function() {
+	console.log(this.fName)
+}
+//子类型
+function zi() {
+	this.zName = 'ls'
+}
+zi.prototype = new fu()
+//子类型的原型为父类型的一个实例对象
+zi.prototype = new fu()
+//让子类型的原型的constructor指向子类
+zi.prototype.constructor = zi
+zi.prototype.showZName = function() {
+	console.log(this.zName)
+}
+
+```
+
+- 图例：
+
+![image-20220611094956463](截图\原型链继承)
+
+- 关键
+  - 子类型的原型为父类型的一个实例对象
+
+### 2.2、借用构造函数继承（假的）
+
+- 套路：
+  1. 定义父类构造函数
+  2. 定义子类构造函数
+  3. 在子类型构造函数中调动父类型构造函数
+- 实例：
+
+```js
+function Person(name,age) {
+	this.name = name
+	this.age = age
+}
+
+function Students(name,age,price) {
+    Person.call(this,name,age)	//相当于：this.Person(name,age)
+    this.price = price
+}
+```
+
+
+
+- 关键
+  - 在子类型构造函数中通用super()调用父类型构造函数
+
+### 2.3、组合继承
+
+原型链+借用构造函数的组合继承
+
+- 利用原型链实现对父类型对象的方法继承
+- 利用super()借用父类型构建函数初始化相同属性
+
+```
+function Person(name,age) {
+	this.name = name
+	this.age = age
+}
+Person.prototype.setName = function(name) {
+    this.name = name
+}
+function Students(name,age,price) {
+    Person.call(this,name,age)	//相当于：this.Person(name,age)
+    this.price = price
+}
+Students.prototype = new Person()	//为了能看到父类型的方法
+Students.prototype.constructor = Students	//修改constructor
+Students.prototype.setPrice = function(price) {
+    this.price = price
+}
+```
+
+## 3、问题
+
+### 3.1、new一个对象背后做了些什么？
+
+1. 创建一个空对象
+2. 给对象设置____proto____，值为构造函数对象的prototype属性值，this._______proto____= Fn.prototype
+3. 执行构造函数体(给对象添加属性/方法)
+
+# 四、线程机制和事件机制
+
+## 1、进程与线程
+
+### 1.1、进程（process）
+
+- 程序的一次执行，它占有一片独有的内存空间
+- 可以通过window任务管理器查看进程
+
+### 1.2、线程（thread)
+
+- 是进程中的一个独立执行单元
+- 是程序执行的一个完整流程
+- 是CPU的最小的调度单元
+
+### 1.3、图解
+
+![image-20220611155116211](截图\进程图解)
+
+### 1.4、相关问题
+
+- 应用程序必须运行在某个进程的某个线程上
+- 一个进程中至少有一个运行的线程：主线程，进程启动后自动创建的
+- 一个进程中可以同时运行多个线程，我们会说程序是多线程运行的
+- 一个进程内的数据可以供其中的多个线程直接共享
+- 多个线程之间的数据是不能直接共享的
+- 线程池(thread pool)：保存多个线程对象的容器，实现线程对象的反复利用
+
+### 1.5、相关问题
+
+1、何为多进程与多线程？
+
+- 多进程运行：一个应用程序可以同时启动多个实例运行
+- 多线程：在一个进程中，同时有多个进程运行
+
+2、比较单线程与多线程？
+
+- 多线程
+  - 优点：
+    - 能有效提高CPU的利用率
+  - 缺点：
+    - 创建多线程开销
+    - 线程间切换开销
+    - 死锁与状态同步问题
+- 单线程
+  - 优点：顺序编程简单容易
+  - 缺点：效率低
+
+3、JS是单线程还是多线程？
+
+- js是单线程运行的
+- 但使用H5中的Web Workers可以多线程运行
+
+4、浏览器运行是单线程还是多线程?
+
+- 都是多线程运行的
+
+## 2、浏览器内核
+
+支撑浏览器运行的最核心的程序，不同的浏览器可能不一样
+
+### 2.1、主流浏览器内核
+
+### 2.2、内核由很多模块组成
+
+- 主线程
+  - js引擎模块：负责js程序的编程与运行
+  - html，css文档解析模块：负责页面文本的解析
+  - DOM/CSS模块：负责dom / css在内存中的相关处理
+  - 布局和渲染模块：负责页面的布局和效果的绘制(内存中的对象)
+
+- 分线程
+  - 定时器模块：负责定时器的管理
+  - DOM事件响应模块：负责事件的管理
+  - 网略请求模块：负责ajax请求
+
+
+## 3、定时器引发的思考
+
+### 3.1、定时器真是定时执行的吗？
+
+- 定时器并不能保证真正定时执行 
+- 一般会延迟一丁点（可以接受），也有可能延迟很长时间（不能接受）
+
+### 3.2、定时器回调函数是在哪个线程执行的？
+
+- 在主线程执行的，js是单线程的
+
+### 3.3、定时器是如何实现的？
+
+- 事件循环模型
+
+## 4、JS是单线程执行的
+
+### 4.1、如何证明js执行是单线程的？
+
+- setTimeout()的回调函数是在主线程执行的
+- 定时器回调函数只有在运行栈中的代码全部执行完后才有可能执行
+
+### 4.2、为什么js要用单线程模式，而不用多线程模式？
+
+- JavaScript的单线程，与它的用途有关
+- 作为浏览器脚本语言，JavaScript的主要用途是与用户互动，以及操作DOM
+- 这决定了它只能是单线程，否则会带来很复杂的同步问题
+
+### 4.3、代码的分类：
+
+- 初始化代码
+- 回调函数
+
+### 4.4、js引擎执行代码的基本流程
+
+- 先执行初始化代码：包含一些特别的代码、
+  - 设置定时器
+  - 绑定监听
+  - 发送ajax请求
+- 后面在某个时刻才会执行回调函数
+
+## 5、浏览器的事件循环(轮询)模型
+
+### 5.1、所有代码分类
+
+- 初始化执行代码(同步代码)：包含绑定dom事件监听，设置定时器，发送ajax请求的代码
+- 回调执行代码(异步代码)：处理回调函数
+
+### 5.2、js引擎执行代码的基本流程：
+
+- 初始化代码==》回调函数
+
+### 5.3、模型的2个重要组成部分
+
+- 事件(定时器/DOM事件/Ajax)管理模型
+- 回调函数
+
+### 5.4、模型的运转流程
+
+- 执行初始化代码，将事件回调函数交给对应模块管理
+- 当事件发生时，管理模块会将回调函数及其数据添加到回调列队中
+- 只有当初始化代码执行完后(可能要一定时间)，才会遍历读取回调队列中的回调函数执行
+
+### 5.5、相关重要概念
+
+- 执行栈：execution stack，所有代码都是在此空间中执行的
+- 浏览器内核
+  - browser core
+  - js引擎模块(在主线程处理)
+  - 其它模块(在主/分线程处理)
+- callback queue
+  - 任务队列：task queue
+  - 消息队列：message queue
+  - 事件队列：event queue
+- 事件轮询：event loop，从任务队列中循环去除回调函数放入执行栈中处理(一个接一个)
+- 事件驱动模型：event-driven interaction model
+- 请求响应模型：request-response model
+
+### 5.6、模型原理图
+
+![image-20220612112100488](\截图\JS进阶\模型原理图)
+
+## 6、H5 Web Workers(多线程)
+
+### 6.1、介绍
+
+- Web Workers 是HTML5提供的一个javascript多线程解决方案
+- 我们可以将一些大量计算的代码交由Web Work运行而不冻结用户界面
+- 但子线程完全受主线程控制，且不得操作DOM所以，这个新标砖并没有改变JavaScript单线程的本质
+
+### 6.2、使用
+
+- 创建在分线程执行的js文件
+
+```
+var onmessage = function(event) { //不能用函数声明
+	console.log('onMessage()')
+	 var upper = event.data.toUpperCase()	//通过event.data获取发送过来的数据
+	 postMessage(upper)	//数据发送给主线程
+}
+```
+
+
+
+- 在主线程中的js中发消息并设置回调函数
+
+```js
+//创建一个Worker对象并向它传递将在新线程中执行的脚本URL
+var worker = new Worker("worker.js")
+//接收worker传过来的数据函数
+worker.onmessage = function(event) {
+	console.log(event.data)
+}
+//想worker发送数据
+worker.postMessage("hello world")
+```
+
+### 6.3、图解
+
+![image-20220612130810507](截图\多线程图解)
+
+### 6.4、不足
+
+- 慢
+- 不能跨域加载JS
+- worker内代码不能访问DOM(更新UI)
+- 不是每个浏览器都支持这个新特性
 
 # 补充
 

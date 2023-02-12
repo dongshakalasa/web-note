@@ -107,7 +107,7 @@ git log -2 --pretty=format:"%h | %an | %ar | %s"
 
 ### ⑨、回退版本
 
-```js
+```
 一、从最新版回退
     1、在一行上显示所有历史版本
     git log --pretty=oneline
