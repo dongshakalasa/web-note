@@ -123,10 +123,10 @@ console.log(arr); // ["liu1", 27, "man1"]
 - **reverse()**：对数组进行倒序
 - **forEach()**：ES5 及以下循环遍历数组每一项
 - **map()**：ES6 循环遍历数组每一项
-- **copyWithin()**：用于从数组的指定位置拷贝元素到数组的另一个指定位置中
 - **find()**：返回匹配的值
 - **findIndex()**：返回匹配位置的索引
-- **toLocaleString()、toString()**：将数组转换为字符串
+- **reduce()和reduceRight()**：实现迭代数组的所有项(即累加器)，然后构建一个最终返回的值。
+- **toString()**：将数组转换为字符串
 - **flat()、flatMap()**：扁平化数组
 - **entries() 、keys() 、values()**：遍历数组
 
@@ -447,11 +447,9 @@ console.log(sum);  //25
 
 ```js
 const array1 = [22, 3, 31, 12];
-const str = array1.toLocaleString();
-const str1 = array1.toString();
+const str = array1.toString();
 
 console.log(str); // 22,3,31,12
-console.log(str1); // 22,3,31,12
 ```
 
 #### 2.19、find()和findIndex()
