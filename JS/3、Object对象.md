@@ -129,13 +129,12 @@ const source = { b: 4, c: 5 };
 
 const returnedTarget = Object.assign(target, source);
 
-console.log(target);
-// Expected output: Object { a: 1, b: 4, c: 5 }
+console.log(target);//{ a: 1, b: 4, c: 5 }
 ```
 
 ### 2、defineProperties()
 
-在一个对象上定义一个(多个)新的属性或修改原有属性，修改的目标对象obj。
+在**一个对象**上定义**一个或多个**新的属性或修改原有属性，修改的目标对象obj。
 
 **语法**： Object.defineProperties (obj, props)
 
@@ -149,6 +148,8 @@ console.log(target);
 - value：属性值。可以是任何有效的 JavaScript 值（数字，对象，函数等）。 默认为 undefined
 - get：作为该属性的 getter 函数，如果没有 getter则为undefined。函数返回值将被用作属性的值。 默认为undefined
 - set：作为属性的 setter 函数，如果没有 setter 则为undefined。函数将仅接受参数赋值给该属性的新值。 默认为 undefined
+
+注：(set,get)和(value,writable)冲突
 
 ```js
 var obj={firstName:"zhang",lastName:'san'};
@@ -173,7 +174,7 @@ var obj={firstName:"zhang",lastName:'san'};
 
 ### 3、defineProperty()
 
-直接在一个对象上定义一个新属性，或者修改一个对象的现有属性，并返回此对象。
+在**一个对象**上定义**一个**新属性，或者修改一个对象的现有属性，并返回此对象。
 
 **语法**：Object.defineProperty(obj, prop, descriptor)
 
@@ -189,3 +190,80 @@ var obj={firstName:"zhang",lastName:'san'};
 - value：属性值。可以是任何有效的 JavaScript 值（数字，对象，函数等）。 默认为 undefined
 - get：作为该属性的 getter 函数，如果没有 getter则为undefined。函数返回值将被用作属性的值。 默认为undefined
 - set：作为属性的 setter 函数，如果没有 setter 则为undefined。函数将仅接受参数赋值给该属性的新值。 默认为 undefined
+
+注意：(set,get)和(value,writable)冲突
+
+```js
+function getObj(){
+let obj={};
+let val=''; //此处val是安全的,外部是无法修改的
+let o = Object.defineProperty(obj,'key',{
+	configurable: true,
+    enumerable: true,
+    get: function () {
+        return val || 0;
+    },
+    set: function (n) {
+        val = n;
+    }
+})
+return o; //每个对象都是新的
+}
+let aa = getObj();
+console.log(aa.key); //返回0
+```
+
+### 4、entries()
+
+**Object.entries()**方法返回一个给定对象自身可枚举属性的键值对数组，其排列与使用 for...in 循环遍历该对象时返回的顺序一致（区别在于 for-in 循环还会枚举原型链中的属性）。
+
+```js
+const obj = { foo: 'bar', baz: 42 };
+console.log(Object.entries(obj)); // [ ['foo', 'bar'], ['baz', 42] ]
+
+// 类似数组的对象
+const obj = { 0: 'a', 1: 'b', 2: 'c' };
+console.log(Object.entries(obj)); // [ ['0', 'a'], ['1', 'b'], ['2', 'c'] ]
+
+// 类似数组的对象，具有随机键排序
+const anObj = { 100: 'a', 2: 'b', 7: 'c' };
+console.log(Object.entries(anObj)); // [ ['2', 'b'], ['7', 'c'], ['100', 'a'] ]
+```
+
+巧用：
+
+```js
+// 遍历对象
+Object.entries(obj).forEach(([key, value]) => {
+console.log(`${key} ${value}`); // "a 5", "b 7", "c 9"
+});
+
+// 将Object转化为Map
+var obj = { foo: "bar", baz: 42 };
+var map = new Map(Object.entries(obj));
+console.log(map); // Map { foo: "bar", baz: 42 }
+```
+
+### 5、getOwnPropertyDescriptor()
+
+**Object.getOwnPropertyDescriptor()** 方法返回指定对象上一个自有属性对应的属性描述符。（自有属性指的是直接赋予该对象的属性，不需要从原型链上进行查找的属性）
+
+```js
+const object1 = {
+  property1: 42
+};
+
+const descriptor1 = Object.getOwnPropertyDescriptor(object1, 'property1');
+
+console.log(descriptor1.configurable);//true
+
+console.log(descriptor1.value); //42
+```
+
+### 6、getOwnPropertyDescriptors()
+
+**Object.getOwnPropertyDescriptors()** 方法用来获取一个对象的所有自身属性的描述符。返回所指定对象的所有自身属性的描述符，如果没有任何自身属性，则返回空对象。
+
+### 7、getOwnPropertySymbols()
+
+**Object.getOwnPropertySymbols()** 方法返回一个给定对象自身的所有 Symbol 属性的数组。

@@ -127,8 +127,8 @@ console.log(arr); // ["liu1", 27, "man1"]
 - **findIndex()**：返回匹配位置的索引
 - **reduce()和reduceRight()**：实现迭代数组的所有项(即累加器)，然后构建一个最终返回的值。
 - **toString()**：将数组转换为字符串
-- **flat()、flatMap()**：扁平化数组
 - **entries() 、keys() 、values()**：遍历数组
+- **isArray()**：判断传入的值，是不是Array类型
 
 ### 2、各个方法详解
 
@@ -331,13 +331,13 @@ arr1.forEach(function(item, index, arr){
 
 #### 2.11、map()
 
-**map()** 方法返回一个新数组，数组中的元素为原始数组元素调用函数处理后的值，不改变原数组。
+**map()** 方法返回一个新数组，数组中的元素为原始数组元素调用函数处理后的值（不改变原数组）。
 
 **map()** 方法按照原始数组元素顺序依次处理元素。
 
 ```js
 var arr = [1, 2, 3, 4, 5];
-var arr2 = arr.map(function(item){
+var arr2 = arr.map(function(item,index,array){
 	return item*item;
 });
 console.log(arr2);  //[1, 4, 9, 16, 25]
@@ -345,7 +345,7 @@ console.log(arr2);  //[1, 4, 9, 16, 25]
 
 #### 2.12、filter()
 
-filter()：“过滤”功能，数组中的每一项运行给定函数，返回满足过滤条件组成的数组。
+filter()：“过滤”功能，数组中的每一项运行给定函数，返回满足过滤条件组成的数组（不改变原数组）。
 
 ```js
 var arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
@@ -493,7 +493,7 @@ console.log(elem);
 // 'b'  
 for (let [index, elem] of ['a', 'b'].entries()) {  
 console.log(index, elem);  
-}  
+} 
 // 0 "a"  
 // 1 "b" 
 ```
