@@ -123,9 +123,51 @@ git log -2 --pretty=format:"%h | %an | %ar | %s"
     git reset --hard <CommitID>
 ```
 
+## 4、创建分支
+
+### ①、创建分支
+
+```js
+git branch
+```
+
+### ②、创建分支
+
+```
+git branch 分支名称
+```
+
+### ③、切换分支
+
+```
+git checkout 分支名称
+```
+
+### ④、分支的快速创建和切换
+
+```
+git checkout -b 分支名称
+```
+
+### ⑤、合并分支
+
+```
+git checkout master //切换分支
+
+git merge login //合并分支
+```
+
+### ⑥、删除分支
+
+```
+git branch -d 分支名称
+```
+
+### ⑦、遇到冲突时的分支合并
 
 
-## 4、遇到的问题
+
+## 5、遇到的问题
 
 ### 1、remote origin already exists.
 

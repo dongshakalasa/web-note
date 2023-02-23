@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/echarts/5.4.1/echarts.common.js"></script>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        #echarts {
+            width: 600px;
+            height: 600px;
+        }
+    </style>
+</head>
+<body>
+    <div id="echarts"></div>
+
+    <script text="text/javascript">
+        const dom = document.querySelector('#echarts')
+        let myCharts = echarts.init(dom)
+
+        let option = {
+            title: {
+                text: 'myEcarts入门示例',
+            },
+            xAxis: {
+                data: ['1','2','3']
+            },
+            yAxis: {
+
+            },
+            series: [
+                {
+                    name:'销量',
+                    type:'line',
+                    data: [5,20,30]
+                }
+            ]
+        }
+
+        myCharts.setOption(option)
+    </script>
+</body>
+</html>
