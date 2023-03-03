@@ -5,7 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <!-- 引入echarts.js -->
     <script src="https://cdn.bootcdn.net/ajax/libs/echarts/5.4.1/echarts.common.js"></script>
+    <!-- 设置样式 -->
     <style>
         * {
             padding: 0;
@@ -13,38 +15,34 @@
         }
 
         #echarts {
-            width: 600px;
-            height: 600px;
+            width: 400px;
+            height: 400px;
+            margin: 0 auto;
+            padding: 10px;
         }
     </style>
 </head>
 <body>
+    <!-- 为 ECharts 准备一个定义了宽高的 DOM -->
     <div id="echarts"></div>
 
     <script text="text/javascript">
+        // 获取dom元素
         const dom = document.querySelector('#echarts')
+        // 基于准备好的dom，初始化echarts实例
         let myCharts = echarts.init(dom)
 
-        let option = {
+        // 指定图表的配置项和数据
+        var option = {
+            // 设置标题
             title: {
-                text: 'myEcarts入门示例',
+                text: 'Echarts入门',
             },
-            xAxis: {
-                data: ['1','2','3']
-            },
-            yAxis: {
-
-            },
-            series: [
-                {
-                    name:'销量',
-                    type:'line',
-                    data: [5,20,30]
-                }
-            ]
+            // 提示
+            tooltip:{}
         }
 
-        myCharts.setOption(option)
+
     </script>
 </body>
 </html>

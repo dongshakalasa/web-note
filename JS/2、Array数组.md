@@ -110,7 +110,7 @@ console.log(arr); // ["liu1", 27, "man1"]
 - **shift()**：删除数组的第一项
 - **unshift()**：向数组首位添加新元素
 - **slice()**：按照条件查找出其中的部分元素
-- **splice()**：对数组进行增删改
+- **splice()**：对数组进行增删改，**改变原数组**
 - **fill()**: 方法能使用特定值填充数组中的一个或多个元素
 - **filter()**:“过滤”功能
 - **concat()**：用于连接两个或多个数组
@@ -119,8 +119,8 @@ console.log(arr); // ["liu1", 27, "man1"]
 - **every()**：判断数组中每一项都是否满足条件
 - **some()**：判断数组中是否存在满足条件的项
 - **includes()**：判断一个数组是否包含一个指定的值
-- **sort()**：对数组的元素进行排序
-- **reverse()**：对数组进行倒序
+- **sort()**：对数组的元素进行排序，**改变原数组**
+- **reverse()**：对数组进行倒序，会**改变原数组**
 - **forEach()**：ES5 及以下循环遍历数组每一项
 - **map()**：ES6 循环遍历数组每一项
 - **find()**：返回匹配的值
@@ -506,5 +506,101 @@ let entries = letter.entries();
 console.log(entries.next().value); // [0, 'a']  
 console.log(entries.next().value); // [1, 'b']  
 console.log(entries.next().value); // [2, 'c'] 
+```
+
+## 数组的遍历
+
+### 1、循环遍历
+
+```js
+for(var i = 0; i<arr.length; i++) {
+
+	arr是要遍历的数组，arr[i]是遍历的元素，i是数组的元素对应的下标（索引号）
+
+}
+```
+
+### 2、for of方法
+
+```js
+for(var item of arr) {
+
+	item 遍历的数组元素
+
+}
+```
+
+### 3、forEach遍历
+
+```js
+arrObj.forEach(function(item,index,self){
+    item 遍历出的每一个元素
+    index 元素对应的下标
+    self 数组本身
+    无返回值
+})
+```
+
+### 4、map映射
+
+```js
+arrObj.map(function(item,index,self){
+    item 遍历出的每一个元素
+    index 元素对应的下标
+    self 数组本身
+    有返回值
+    数组元素个数，但按照一定的条件转换
+})
+```
+
+### 5、fillter过滤
+
+```js
+arrObj.filter(function(item,index,self){
+    item 遍历出的每一个元素
+    index 元素对应的下标
+    self 数组本身
+    有返回值
+    返回满足某个条件的元素构成的数组
+})
+```
+
+### 6、reduce高阶函数（迭代（累加器））
+
+```js
+arrObj.reduce(function(total,item,index,self){
+    total 初始值或计算结束后的返回值
+    item 遍历出的每一个元素
+    index 元素对应的下标
+    self 数组本身
+    有返回值
+    返回计算结束后的total值
+}，初始值)
+```
+
+### 7、every
+
+```js
+arrObj.every(function(item,index,self){
+    item 遍历出的每一个元素
+    index 元素对应的下标
+    self 数组本身
+    有返回值
+    检测数组里的每一个值是否满足指定条件，如果有一个值不满足，返回false，剩余的值不再进行检测
+    如果所有的值都满足，则返回true
+})
+```
+
+### 8、some
+
+```js
+arrObj.some(function(item,index,self){
+    item 遍历出的每一个元素
+    index 元素对应的下标
+    self 数组本身
+    有返回值
+ 	检测数组里的每一个值是否满足指定条件，如果有一个值满足，返回true，剩余的值不再进行检测
+    如果所有的值都不满足，则返回false
+})
 ```
 

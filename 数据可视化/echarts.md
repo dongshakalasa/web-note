@@ -1,158 +1,32 @@
-# ECharts 入门
+# 一、Echarts介绍
 
-## 入门案例：销售柱状图
+1. echarts是一款基于JavaScript的数据可视化图表库，提供直观，生动，可交互，可个性化定制的[数据可视化](https://so.csdn.net/so/search?q=数据可视化&spm=1001.2101.3001.7020)图表。ECharts最初由百度团队开源，并于2018年初捐赠给Apache基金会，成为ASF孵化级项目。
+2. 学习一项技术的关键，还是需要多读官方文档，官网链接[Apache ECharts](https://echarts.apache.org/zh/index.html),与之类似的图表库还有D3，HeightCharts。
+3. echarts的下载
+   - 从npm获取：npm install echarts --save
+   - 从CDN获取
+   - 从GitHub获取
 
-<iframe 
-  src="https://book.youbaobao.xyz/datav-res/examples/test-echarts.html"
-  width="100%"
-  height="400"
-/>
+# 二、Echarts语法
 
-::: details
-```html
-<!DOCTYPE html>
-<html>
-  <head>
-    <script src="https://cdn.jsdelivr.net/npm/echarts@4.7.0/dist/echarts.min.js"></script>
-    <style>
-      #chart {
-        width: 800px;
-        height: 400px;
-      }
-    </style>
-  </head>
-  <body>
-    <div id="chart"></div>
-    <script>
-      const chartDom = document.getElementById('chart')
-      const chart = echarts.init(chartDom)
-      chart.setOption({
-        title: {
-          text: '快速入门ECharts开发'
-        },
-        xAxis: {
-          data: ['食品', '数码', '服饰', '箱包']
-        },
-        yAxis: {},
-        series: {
-          type: 'bar',
-          data: [100, 120, 90, 150]
-        }
-      })
-    </script>
-  </body>
-</html>
-```
-:::
+## 1、Echarts常用语法
 
-> 思考：ECharts 的绘图流程是怎样的？
+|  英文   | 汉语  |
+| :-----: | :---: |
+|  title  | 标题  |
+| legend  | 图例  |
+| tooltip | 提示  |
+|  xAxis  | x轴线 |
+|  yAxis  | y轴线 |
+| series  | 系列  |
+|  data   | 数据  |
 
-::: details
-1. 引入 js 库
-2. 编写渲染容器 DOM，添加 width 和 height 样式属性
-3. 获取渲染 DOM 对象
-4. 初始化 ECharts 对象
-5. 编写 option 参数
-6. 调用 setOption 完成渲染
-:::
+## 2、图表常见类型
 
-## 进阶案例：多 ECharts 实例
+1. bar柱状图
+2. line折线图
+   1. 曲线图：加上smooth：true
+   2. 面积图：加上areaStyle:{fill:'#f70'}
+3. pie饼型图
+   1. 环形图：加上radius:[80,50]
 
-<iframe 
-  src="https://book.youbaobao.xyz/datav-res/examples/test-echarts-multi.html"
-  width="100%"
-  height="700"
-/>
-
-::: details
-```html
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <script src="https://cdn.jsdelivr.net/npm/echarts@4.7.0/dist/echarts.min.js"></script>
-    <style>
-      #chart {
-        width: 800px;
-        height: 300px;
-      }
-      #chart2 {
-        width: 800px;
-        height: 300px;
-      }
-    </style>
-  </head>
-  <body>
-    <div>这是第一个 echarts 图表</div>
-    <div id="chart"></div>
-    <div>这是第二个 echarts 图表</div>
-    <div id="chart2"></div>
-    <script>
-      const chartDom = document.getElementById('chart')
-      const chartDom2 = document.getElementById('chart2')
-      const chart = echarts.init(chartDom)
-      const chart2 = echarts.init(chartDom2)
-      const option1 = {
-        xAxis: {
-          type: 'category',
-          boundaryGap: false,
-          data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
-        },
-        yAxis: {
-          type: 'value'
-        },
-        series: [{
-          data: [820, 932, 901, 934, 1290, 1330, 1320],
-          type: 'line',
-          areaStyle: {}
-        }]
-      };
-      const option2 = {
-        legend: {
-          data: ['高度(km)与气温(°C)变化关系']
-        },
-        tooltip: {
-          trigger: 'axis',
-          formatter: 'Temperature : <br/>{b}km : {c}°C'
-        },
-        grid: {
-          left: '3%',
-          right: '4%',
-          bottom: '3%',
-          containLabel: true
-        },
-        xAxis: {
-          type: 'value',
-          axisLabel: {
-            formatter: '{value} °C'
-          }
-        },
-        yAxis: {
-          type: 'category',
-          axisLine: {onZero: false},
-          axisLabel: {
-            formatter: '{value} km'
-          },
-          boundaryGap: false,
-          data: ['0', '10', '20', '30', '40', '50', '60', '70', '80']
-        },
-        series: [{
-          name: '高度(km)与气温(°C)变化关系',
-          type: 'line',
-          smooth: true,
-          lineStyle: {
-            width: 3,
-            shadowColor: 'rgba(0,0,0,0.4)',
-            shadowBlur: 10,
-            shadowOffsetY: 10
-          },
-          data:[15, -50, -56.5, -46.5, -22.1, -2.5, -27.7, -55.7, -76.5]
-        }]
-      }
-      chart.setOption(option1)
-      chart2.setOption(option2)
-    </script>
-  </body>
-</html>
-```
-:::
