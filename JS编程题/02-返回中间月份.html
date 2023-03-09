@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 给定起止日期，返回中间的所有月份
+
+            // function getDate(dateStr = '', addMonth = 0) {
+            //     const [year, month] = dateStr.split('-');
+            //     return new Date(year, month - 1 + addMonth);
+            // }
+            // function formateDate(dateStr = new Date()) {
+            //     return `${dateStr.getFullYear()}-${String(dateStr.getMonth() + 1).padStart(2, 0)}`;
+            // }
+            // const getRangeMonth = (startDateStr = '', endDateStr = '') => {
+            //     const result = [];
+            //     let startTime = getDate(startDateStr) ? getDate(startDateStr, 1).getTime() : 0;
+            //     const endTime = getDate(endDateStr) ? getDate(endDateStr).getTime() : 0;
+            //     while (startTime < endTime) {
+            //         const curTime = new Date(startTime);
+            //         result.push(formateDate(curTime));
+            //         curTime.setMonth(curTime.getMonth() + 1);
+            //         console.log(curTime);
+            //         startTime = curTime.getTime();
+            //     }
+            //     return result;
+            // }
+            // console.log(getRangeMonth("2017-08", "2018-12")); // [ '2018-09', '2018-10', '2018-11' ]
+    </script>
+
+    <script>
+        function getDate(dateStr ='',addMonth = 0){
+            const [year,month] = dateStr.split('-')
+            return new Date(year,month-1+addMonth)
+        }
+
+        function pushDate(dateStr) {
+            return `${dateStr.getFullYear()}-${String(dateStr.getMonth()+1)}`
+        }
+
+        const getRangeMonth = (start,end)=>{
+            const result = []
+            let startTime = start?getDate(start,1):0
+            let endTime = end?getDate(end):0
+
+            while (startTime < endTime) {
+                const curTime = new Date(startTime)
+                result.push(pushDate(curTime))
+                console.log(curTime);
+                curTime.setMonth(curTime.getMonth() + 1)
+                console.log(curTime);
+                startTime = curTime.getTime()
+            }
+
+            return result
+        }
+        console.log(getRangeMonth("2017-08", "2018-12")); // [ '2018-09', '2018-10', '2018-11' ]
+
+    </script>
+</body>
+</html>

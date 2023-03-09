@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        html,
+        body {
+            height: 100%;
+        }
+
+        .box {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+
+            /* 位移居中，%相对于自身宽高 */
+            transform: translate(-50%, -50%);
+
+            width: 200px;
+            height: 200px;
+            background-color: aqua;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <div class="box1"></div>
+    </div>
+</body>
+
+</html>
