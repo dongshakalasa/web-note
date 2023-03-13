@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 使用Symbol()创建Symbol类型的数据
+        const a = Symbol()
+        // 使用Symbol.for()
+        // 1、如果全局注册表没有该描述字符，创建Symbol类型的数据，
+        // 2、如果全局注册表有该描述字符，返回该Symbol类型的数据
+        const b1 = Symbol.for('a')
+        const b2 = Symbol.for('a')
+        console.log(b1 === b2)
+        // Symbol.keyFor()
+        // 通过Symbol类型的数据获取该数据的描述字符
+        console.log(Symbol.keyFor(b1) === Symbol.keyFor(b2));
+    </script>
+</body>
+</html>

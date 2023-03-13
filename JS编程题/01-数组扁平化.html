@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 方法一：使用forEach循环数组，使用concat合并数组 
+        function forEachFn(arr){
+            let rest = []
+            if(Array.isArray(arr)) {
+                arr.forEach(item => {
+                    rest = rest.concat(flatten(item))
+                });
+            }else {
+                rest.push(arr)
+            }
+            return rest
+        }
+
+        // 方法二：使用map遍历数组，使用concat合并数组
+        function mapFn(arr) {
+            return arr.reduce((pre, item) => { return pre.concat(Array.isArray(item) ? fn(item) : item) }, [])
+        }
+
+        // 方法三：使用es6新增的数组flat方法
+        function flatFn(arr) {
+            return arr.flat(Infinity);
+        }
+
+        // 方法四：使用JSON进行转换，使用正则进行筛选替换
+        function jsonFn(arr){
+            return JSON.parse('['+JSON.stringify(arr).replace(/\[|\]/g,'')+']')
+        }
+    </script>
+
+</body>
+</html>

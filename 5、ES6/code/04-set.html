@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 创建Set对象 -->
+    <script>
+        // new关键字创建空对象
+        let s = new Set()
+
+        // 创建的时候初始化
+        const ss = new Set(["val1", 1, true, {}, undefined, function fun() { }]);
+    </script>
+
+    <!-- Set对象的属性和方法 -->
+    <script>
+        let arrSet = new Set(['a','b','c','d'])
+
+        // size属性
+        console.log(arrSet.size); // 4
+        
+        // add()方法
+        arrSet.add('e')
+        console.log(arrSet); // Set(5) {'a', 'b', 'c', 'd', 'e'}
+
+        // has()方法
+        console.log(arrSet.has('c')); // true
+
+        // delete()方法
+        arrSet.delete('b')
+        console.log(arrSet); // Set(4) {'a', 'c', 'd', 'e'}
+        
+        // clear()方法
+        arrSet.clear()
+        console.log(arrSet); //Set(0) {size: 0}
+
+
+        let arrs = new Set(['a', 'b', 'c', 'd'])
+
+        // entries()方法
+        console.log(arrs.entries()); //SetIterator {'a' => 'a', 'b' => 'b', 'c' => 'c', 'd' => 'd'}
+
+        // keys()方法
+        console.log(arrs.keys()); //SetIterator {'a', 'b', 'c', 'd'}
+
+        // values()方法
+        console.log(arrs.values()); //SetIterator {'a', 'b', 'c', 'd'}
+
+        // forEach()方法
+        arrs.forEach((item,index,arr)=>{
+            console.log(item,index,arr);
+        })
+        // a a Set(4) {'a', 'b', 'c', 'd'}
+        // b b Set(4) { 'a', 'b', 'c', 'd' }
+        // c c Set(4) { 'a', 'b', 'c', 'd' }
+        // d d Set(4) { 'a', 'b', 'c', 'd' }
+    </script>
+</body>
+</html>

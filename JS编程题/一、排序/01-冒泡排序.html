@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+        1、需采用双重循环
+        2、第一重循环，让数组从后向前遍历
+        3、第二重循环，从前往后遍历从第一重循环元素到首部元素的数组
+        4、让第二重循环的元素和第一次循环的元素，一次比较根据大小进行换位
+        5、循环结束返回结果
+
+     -->
+    <script>
+        function bubbleSort(arr){
+            const len = arr.length
+            for(let i = len;i > 1;i--){
+                for(let j = 0; j < i-1; j++) {
+                    if(arr[i] < arr[j]) {
+                        let tmp = arr[j];
+                        arr[j] = arr[i];
+                        arr[i] = tmp
+                    }
+                }
+            }
+            return arr
+        }
+        console.log(bubbleSort([2, 3, 1, 4, 8, 7, 9, 6]));
+    </script>
+</body>
+</html>

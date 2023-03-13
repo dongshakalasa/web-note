@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 创建map对象 -->
+    <script>
+        // 创建空对象
+        const map1 = new Map()
+        console.log(map1); //Map(0)
+
+        // 创建并初始化
+        const map2 = new Map([['a',1],['b',2]])
+        console.log(map2); //Map(2) {'a' => 1, 'b' => 2}
+    </script>
+
+    <!-- 属性 -->
+    <script>
+        /* 属性 */
+        // size()
+        console.log(map2.size); // 2
+
+        /* 方法 */
+        // set()
+        map2.set('c',3)
+        console.log(map2); // Map(3) {'a' => 1, 'b' => 2, 'c' => 3}
+
+        // get()方法
+        console.log(map2.get('a')); //1
+
+        // has()方法
+        console.log(map2.has('b')); // true
+
+        // delete()方法
+        map2.delete('a')
+        console.log(map2); // Map(2) {'b' => 2, 'c' => 3}
+
+        // clear()方法
+        map2.clear()
+        console.log(map2); // Map(0) {size: 0}
+
+
+        const map3 = new Map([['a', 1], ['b', 2]])
+        // entries()方法
+        console.log(map3.entries()); // MapIterator {'a' => 1, 'b' => 2}
+
+        // keys()方法
+        console.log(map3.keys()); // MapIterator {'a', 'b'}
+
+        // values()方法
+        console.log(map3.values()); //MapIterator {1, 2}
+
+        // forEach()方法
+        map3.forEach((item,index,map)=>{
+            console.log(item,index,map);
+        })
+        // 1 'a' Map(2) {'a' => 1, 'b' => 2}
+        // 2 'b' Map(2) {'a' => 1, 'b' => 2}
+
+
+        console.log('--------------------');
+
+        // Map Iterator对象的next()方法遍历
+        let keys = map3.keys();
+        for (i = 0; i < map3.size; i++) {
+            let key = keys.next().value;       // obj.propertyName
+            // key = keys.next()[value];   // obj[propertyName]
+            console.log(key);
+        }
+    </script>
+</body>
+</html>
