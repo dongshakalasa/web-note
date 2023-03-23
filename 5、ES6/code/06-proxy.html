@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let person = {
+            name:'张三',
+            sex:'男',
+            _b: 12
+        };
+
+        // ## get()方法
+        /* 
+        let proxy = new Proxy(person,{
+            get:function(target,propKey,receiver) {
+                // { name: '张三', sex: '男' } 'age' Proxy { name: '张三', sex: '男' }
+                console.log(target,propKey,receiver); 
+                return '啦啦啦啦'
+            }
+        })
+
+        console.log(proxy.name); // 啦啦啦啦
+        */
+
+        // ## set()方法
+        /*
+        let proxy = new Proxy(person,{
+            set: function(target,prop,value,receiver){
+                // {name: '张三', sex: '男'}  'age'  18   Proxy {name: '张三', sex: '男'}
+                console.log(target,prop,value,receiver);
+                return true;
+            }
+        });
+
+        proxy.age = 18
+        */
+    
+        // ## apply()方法
+        /*
+        let target = function(){
+            return ' I am function'
+        }
+
+        let handler = {
+            apply:function(target,ctx,args) {
+                console.log(target); //ƒ (){ return ' I am function' }
+                console.log(ctx); //undefined
+                console.log(args); //(3) [1, 2, 3]
+                return ' I am Proxy'
+            }
+        }
+
+        const proxy = new Proxy(target,handler)
+
+        console.log(proxy(1, 2, 3)); // I am Proxy
+        */
+
+        // ## has()方法
+        /*
+        const proxy = new Proxy(person,{
+            has:function(target,prop) {
+                console.log(target); // {name: '张三', sex: '男'}
+                console.log(prop); // name
+                return true
+            }
+        })
+
+        console.log("name" in proxy); // true
+        */
+
+        // ## construct() 方法
+        /*
+        const proxy = new Proxy(function(){},{
+            construct:function(target,arumentsList,newTarget){
+                console.log(target); //ƒ (){}
+                console.log(arumentsList); [1]
+                console.log(newTarget); // Proxy { length: 0, name: '', arguments: null, caller: null, prototype: {… } }
+                return {value: arumentsList[0]*10}
+            }
+        })
+        console.log(new proxy(1).value); // 10
+        */
+
+        // ## deleteProperty()方法
+        // const proxy = new Proxy(person,{
+        //     deleteProperty:function(target,property) {
+        //         // 正则
+        //         let text = /^_\w*/
+        //         if(text.test(property)) {
+        //             console.log('_开头属性，不可删除');
+        //             return false
+        //         }
+        //         return true;
+        //     }
+        // })
+        // console.log(proxy); //Proxy {name: '张三', sex: '男'}
+        // console.log(delete proxy.name); //true
+        // console.log(proxy); //Proxy {name: '张三', sex: '男'}
+
+        // console.log(proxy);
+        // delete proxy._b
+        // console.log(proxy);
+
+        /* ## defineProperty()方法 
+        /*
+        var proxy = new Proxy({}, {
+            defineProperty: function (target, prop, descriptor) {
+                console.log('called: ' + prop);
+                return true;
+            }
+        });
+
+        var desc = { configurable: true, enumerable: true, value: 10 };
+        Object.defineProperty(proxy, 'a', desc); // "called: a"
+        */
+
+    //    ## getOwnPropertyDescripter
+    //    var proxy = new Proxy(person,{
+    //     getOwnPropertyDescriptor:function(target,key) {
+    //         // let text = /^_\w*/
+    //         if(text.test(key)) {
+    //             return ;
+    //         }
+    //         return Object.getOwnPropertyDescriptor(target,key)
+    //     }
+    //    })
+    //    //{value: '张三', writable: true, enumerable: true, configurable: true}
+    //    console.log(Object.getOwnPropertyDescriptor(proxy, "name")); 
+    //    // undefined
+    //    console.log(Object.getOwnPropertyDescriptor(proxy, "_b")); 
+
+      
+        /*
+        getPrototypeOf()
+        */
+       const proxy = new Proxy(person,{
+        getPrototypeOf:function(target){
+            return Array.prototype
+        }
+       })
+
+       console.log(proxy instanceof Array);
+   </script>
+</body>
+</html>

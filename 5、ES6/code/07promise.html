@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 基本使用 -->
+    <!-- <script>
+        let promise = new Promise((resolve,reject)=>{
+            setTimeout(()=>{
+                resolve('ok')
+            })
+        },1000)
+        promise.then((data)=>{
+            console.log(data);
+        }).catch((err)=>{
+            console.log(err);
+        })
+    </script> -->
+
+    <!-- then -->
+    <!-- <script>
+        let p = new Promise((resolve,reject)=>{
+            // resolve('ok')
+            // reject('err')
+            throw new Error('发生错误')
+        })
+
+        p.then((value)=>{
+            console.log(value);
+        }).catch((error)=>{
+            console.log(error);
+        }).finally(()=>{
+            console.log('一定执行');
+        })
+    </script> -->
+
+    <!-- promise.all -->
+    <!-- <script>
+            function pAll(_promise) {
+                    // 返回promise对象
+                    return new Promise((resolve, reject) => {
+                        // Iterable => Array
+                        const promises = Array.from(_promise)
+                        // 结果用一个数组
+                        const res = []
+                        const len = promises.length
+                        let count = 0
+                        for (let i = 0; i < len; i++) {
+                            // Promise.resolve 确保把所有数据都转化为 Promise
+                            Promise.resolve(promises[i]).then(o => {
+                                // 因为 promise 是异步的，保持数组一一对应
+                                res[i] = o
+
+                                // 如果数组中所有 promise 都完成，则返回结果数组
+                                if (++count === len) {
+                                    resolve(res)
+                                }
+                            }).catch(e => reject(e))
+                        }
+                    })
+                }
+
+            const sleep = (seconds) =>
+                new Promise(resolve => setTimeout(() => resolve(seconds), seconds))
+
+            const p1 = sleep(1000);
+            const p2 = sleep(2000);
+            const p3 = sleep(10000)
+            pAll([p1, p2, p3]).then(o => console.log(o)).catch(e => console.log(' Error->', e))
+    </script> -->
+
+
+    <!-- 简版Promise -->
+    <script>
+        // 声明proimse的三种状态
+        const PENDING = 'PENDING'; //等待态
+        const FUFILLED = 'FUFILLED';//成功态
+        const REJECTED = 'REJECTED';//失败态
+
+        class Promise {
+            constructor(executor) {
+                this.value = undefined;
+                this.reason = undefined;
+                this.state = PENDING;
+                const resolve = (value) =>{
+                    this.value = value;
+                    this.state = FUFILLED
+                }
+                const reject = (reason) =>{
+                    this.reason = reason;
+                    this.state = REJECTED;
+                }
+
+                try{
+                    executor(resolve,reject);
+                }catch(e){
+                    reject(e)
+                }
+            }
+            then(onFulfilled,onRejected) {
+                if(this.state = FUFILLED) {
+                    onFulfilled(this.value)
+                }
+                if(this.state = REJECTED) {
+                    onRejected(this.reason)
+                }
+            }
+        }
+    </script>
+</body>
+</html>

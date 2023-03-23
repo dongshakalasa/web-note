@@ -1,4 +1,4 @@
-# HTML概述
+# 一、HTML概述
 
 ## 1.1、什么是HTML
 
@@ -22,7 +22,7 @@ HTML通过提前约定好的标签来构建我们的网页内容，通过浏览�
 
 浏览器是一个HTML的[解释器](https://so.csdn.net/so/search?q=解释器&spm=1001.2101.3001.7020)，在浏览器中内置了一个解释器，该解释器中包含了所有HTML标签的展示风格
 
-# HTML常用基础标签
+# 二、HTML常用基础标签
 
 ## 2.1、HTML文件的骨架
 
@@ -441,17 +441,17 @@ checked属性主要针对于单选按钮和复选框
 
 cols="每行中的字符树"，rows="显示的行数"（并不是所有行数，超过显示行数后会自动加上滚动条），在实际开发中不会使用，都是用CSS来改变大小
 
-# HTML语义
+# 三、HTML5新特性
 
-## 什么是语义元素？
+## 1.1、什么是语义元素？
 
 语义元素清楚地向浏览器和开发者描述其意义。
 
-**非语义**元素的例子：<div> 和 <span> - 无法提供关于其内容的信息。
+**非语义**元素的例子：<div\> 和 <span\> - 无法提供关于其内容的信息。
 
-**语义**元素的例子：<form>、<table> 以及 <img> - 清晰地定义其内容。
+**语义**元素的例子：<form\>、<table\> 以及 <img\> - 清晰地定义其内容。
 
-## HTML5 中新的语义元素
+## 1.2、HTML5 中新的语义元素
 
 许多网站包含了指示导航、页眉以及页脚的 HTML 代码，例如这些：<div id="nav"\> <div class="header"\> <div id="footer"\>。
 
@@ -473,15 +473,16 @@ HTML5 提供了定义页面不同部分的新语义元素：
 
 ![](图片\HTML5语义元素.png)
 
-## HTML5 <section\> 元素
+###  <section\> 元素
 
-<section> 元素定义文档中的节。
+<section\> 元素定义文档中的节。
+
 
 根据 W3C 的 HTML 文献：“节（section）是有主题的内容组，通常具有标题”。
 
 可以将网站首页划分为简介、内容、联系信息等节。
 
-## HTML5 <article\> 元素
+### <article\> 元素
 
 <article\> 元素规定独立的自包含内容。
 
@@ -490,22 +491,10 @@ HTML5 提供了定义页面不同部分的新语义元素：
 <article\> 元素的应用场景：
 
 - 论坛
-- 博客
+- #### 博客
 - 新闻
 
-## 嵌套语义元素
-
-在 HTML5 标准中，<article> 元素定义完整的相关元素自包含块。
-
-<section> 元素被定义为相关元素块。
-
-我们能够使用该定义来决定如何嵌套元素吗？不，我们不能！
-
-在因特网上，您会发现 <section> 元素包含 <article> 元素的 HTML 页面，还有 <article> 元素包含 <sections> 元素的页面。
-
-您还会发现 <section> 元素包含 <section> 元素，同时 <article> 元素包含 <article> 元素。
-
-## HTML5 <header\> 元素
+###  <header\> 元素
 
 <header\> 元素为文档或节规定页眉。
 
@@ -513,7 +502,7 @@ HTML5 提供了定义页面不同部分的新语义元素：
 
 一个文档中可以有多个 <header\> 元素。
 
-## HTML5 <footer\> 元素
+### <footer\> 元素
 
 <footer\> 元素为文档或节规定页脚。
 
@@ -523,19 +512,19 @@ HTML5 提供了定义页面不同部分的新语义元素：
 
 您可以在一个文档中使用多个 <footer\> 元素。
 
-## HTML5 <nav\> 元素
+### <nav\> 元素
 
 <nav\> 元素定义导航链接集合。
 
 <nav\> 元素旨在定义大型的导航链接块。不过，并非文档中所有链接都应该位于 <nav\> 元素中！
 
-## HTML5 <aside\> 元素
+### <aside\> 元素
 
 <aside\> 元素页面主内容之外的某些内容（比如侧栏）。
 
 aside 内容应该与周围内容相关。
 
-## HTML5 <figure\> 和 <figcaption\> 元素
+### <figure\> 和 <figcaption\> 元素
 
 在书籍和报纸中，与图片搭配的标题很常见。
 
@@ -543,7 +532,7 @@ aside 内容应该与周围内容相关。
 
 通过 HTML5，图片和标题能够被组合在 *<figure>* 元素中：
 
-## 为何使用 HTML5 元素？
+### 为何使用 HTML5 元素？
 
 如果使用 HTML4 的话，开发者会使用他们喜爱的属性名来设置页面元素的样式：
 
@@ -573,7 +562,7 @@ header, top, bottom, footer, menu, navigation, main, container, content, article
 | <summary\>    | 定义 <details\> 元素的可见标题。                   |
 | <time\>       | 定义日期/时间。                                    |
 
-# HTML的解析过程
+# 四、HTML的解析过程
 
 ​		html文件在没有写入html标签之前和txt文本是一个性质的，不含任何样式。只是单纯的文本预览文件。一旦加入了html标签，表示内容有了语义！浏览器的渲染引擎才会根据标签的语义开始解析。
 
@@ -592,7 +581,7 @@ header, top, bottom, footer, menu, navigation, main, container, content, article
 - 渲染树布局
 - 绘制渲染树
 
-# HTML典型问题
+# 五、HTML典型问题
 
 ## 1、DomContentLoad是什么 ？
 

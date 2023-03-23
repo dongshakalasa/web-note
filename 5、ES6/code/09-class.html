@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 基本使用 -->
+    <script>
+        class Person {
+            // 静态属性
+            static name = '人'
+            // 实例属性
+            constructor(name,sex) { 
+                this.name = name;
+                this.sex = sex;
+            }
+            // 实例属性
+            getName(){
+                return this.name
+            }
+            // 实例属性
+            setSex(sex) {
+                this.sex = sex
+            }
+            // 静态属性
+            static sleep(){
+                console.log('睡觉中。。。')
+            }
+        }
+        console.dir(Person);
+        console.log(new Person());
+        Person.sleep() // 睡觉中。。。
+        console.log(Person.name);
+    </script>
+
+    <!-- 私有属性 -->
+    <script>
+        class Man {
+            #name = '男'
+            #setName(name){
+                this.#name = name
+            }
+            init(name){
+                console.log(this.#name);
+                this.#setName(name)
+                console.log(this.#name);
+            }
+        }
+        let m = new Man()
+        m.init('飞')
+        console.dir(Man);
+    </script>
+
+    <!-- 继承 -->
+    <script>
+        class Father {
+            #name = 'Father'
+            constructor(name,money) {
+                this.name = name;
+                this.money = money;
+            }
+            fatherMoney(){
+                console.log(this.name + this.money);
+            }
+            getName() {
+                console.log(this.#name);
+            }
+        }
+
+        class Son extends Father{
+            #name = 'Son'
+            constructor(name,money) {
+                super(name, money)
+                this.name = name;
+                this.money = money;
+            }  
+        }
+
+        let son = new Son('son','50')
+        son.getName()
+        son.fatherMoney()
+    </script>
+</body>
+</html>

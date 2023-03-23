@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // （1）从第一个元素开始，该元素可以认为已被排序
+        // （2）取出下一个元素，在已排序的元素序列中从后向前扫描
+        // （3）如果该元素（已排序）大于新元素，将该元素移到下一位置
+        // （4）重复步骤（3），直到找到已排序的元素小于或等于新元素的位置
+        // （5）将新元素插入到下一位置中
+        // （6）重复步骤（2）~(5)
+        function insertSort(arr) {
+            for(let i = 0;i<arr.length - 1;i++){
+                let end = i
+                let item = arr[end+1]
+                while(end >= 0) {
+                    if(item < arr[end]) {
+                        arr[end+1] = arr[end]
+                        end--
+                    }else {
+                        break;
+                    }
+                }
+                arr[end+1] = item
+            }
+            return arr
+        }
+        let arr = [5,2,4,6,1,3]
+        
+        console.log(insertSort(arr));
+    </script>
+</body>
+</html>

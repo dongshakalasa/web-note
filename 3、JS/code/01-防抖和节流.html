@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="btn1">节流</button>
+    <button id="btn2">防抖</button>
+    
+    <script>
+        let btn1 = document.querySelector('#btn1')
+        let btn2 = document.querySelector('.btn2')
+
+        btn1.addEventListener('click',function(){
+            let timeId = 1;
+            console.log(timeId);
+            timeId++
+        })
+
+        function debounce() {
+            let timeId = 1;
+            console.log(timeId);
+                timeId++
+                
+        }
+
+        function throttle(fn, time) {
+            let timeId = false;
+            return function () {
+                if (timeId) return;
+                timeId = true;
+                setTimeout(() => {
+                    fn();
+                    timeId = false;
+                }, time)
+            }
+        }
+    </script>
+</body>
+</html>

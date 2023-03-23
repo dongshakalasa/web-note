@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        audio {
+            /* width: 50px;
+            height: 50px; */
+        }
+    </style>
+</head>
+<body>
+    <span>
+        <em>ememem</em>
+        <i>iiiiii</i>
+    </span>
+    <audio src="./files/lin.mp3" autoplay="autoplay" controls="controls" loop="loop"></audio>
+    <button id="btn">console.log</button>
+
+    <script>
+        var btn = document.querySelector('#btn')
+        var audio = document.querySelector('audio')
+
+        // 事件
+        audio.onloadstart = function(){
+            console.log('开始载入');
+        }
+
+        audio.onpause = function(){
+            console.log('终止');
+        }
+
+        audio.onplaying = function(){
+            console.log('开始播放');
+        }
+
+        // 只读
+        console.log('音乐播放时长' + audio.duration);
+        console.log('音乐是否播放' + audio.paused);
+        console.log('音频是否播放完毕' + audio.ended);
+        console.log('发生错误情况下的`MediaError`对象' + audio.error);
+        console.log('返回正在播放或加载的音频的`URL`地址' + audio.currentSrc);
+        console.log('用户是否在音频中移动或者跳跃到新的播放点' + audio.seeking);
+
+
+        // played
+        btn.addEventListener('click', () => {
+            const length = audio.played.length
+            console.log(`length: ${length}`)
+
+            for (var i = 0; i < length; i++) {
+                var start = audio.played.start(i)
+                var end = audio.played.end(i)
+
+                console.log(`index: ${i}, start: ${start}, end: ${end}, durations: ${end - start}s`)
+            }
+        })
+    </script>
+</body>
+</html>

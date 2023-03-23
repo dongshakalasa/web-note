@@ -437,7 +437,7 @@ console.log(includes1); // false
 ```js
 var values = [1,2,3,4,5];
 var sum = values.reduceRight(function(prev, cur, index, array){
-return prev + cur;
+	return prev + cur;
 },10);   //数组一开始加了一个初始值10,可以不设默认0
 console.log(sum);  //25
 ```

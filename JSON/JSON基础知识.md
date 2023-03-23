@@ -1,4 +1,4 @@
-# JSON是什么？
+# 一、JSON是什么？
 
 - JSON，全称是 JavaScript Object Notation，即 JavaScript对象标记法。
 - JSON是一种轻量级（Light-Meight)、基于文本的(Text-Based)、可读的(Human-Readable)格式。
@@ -8,7 +8,7 @@
 - 因为JSON本身就是参考JavaScript 对象的规则定义的，其语法与JavaScript定义对象的语法几乎完全相同。
 - JSON格式的创始人声称此格式永远不升级，这就表示这种格式具有长时间的稳定性，10 年前写的文件，10年后也能用,没有任何兼容性问题。
 
-# JSON 的语法规则是怎样的？
+# 二、JSON 的语法规则是怎样的？
 
 JSON 的语法规则十分简单，可称得上“优雅完美”，总结起来有：
 
@@ -25,7 +25,7 @@ JSON 的语法规则十分简单，可称得上“优雅完美”，总结起来
 }
 ```
 
-# JSON 和 XML
+# 三、JSON 和 XML
 
 ​		JSON常被拿来与XML做比较，因为JSON 的诞生本来就多多少少要有取代XNL的意思。相比 XML，JSON的优势如下:
 
@@ -57,7 +57,7 @@ JSON 的语法规则十分简单，可称得上“优雅完美”，总结起来
   </root>
   ```
 
-# JSON的解析和生成（JSON 和 JS 对象互转）
+# 四、JSON的解析和生成（JSON 和 JS 对象互转）
 
 - 在JavaScript中，有两个方法与此相关: JSON.parse和 JSON.stringify 。
 
@@ -66,7 +66,7 @@ JSON 和 JS 对象互转
 - 要实现从**JSON字符串**转换为**JS对象**，使用 **JSON.parse()** 方法
 - 要实现从**JS对象**转换为**JSON字符串**，使用 **JSON.stringify()** 方法：
 
-# JSON格式规定
+# 五、JSON格式规定
 
 对象（0bject)
 

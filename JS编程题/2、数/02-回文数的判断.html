@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <HR></HR>
+    <script>
+        // 0-9的数字都可以成为回文数
+        // 不等于0且尾数是0的数字都不是回文数
+        // 负数都不是回文数
+        
+        function palindromicNumber(num){
+            if(num < 10 || num % 10 == 0) {
+                return false
+            }
+
+            let numStr = num + '';
+            let numArr = numStr.split('')
+            let numArrReverse = numArr.reverse()
+            if(numArr.toString() == numArrReverse.toString()) {
+                return true
+            }
+            return false
+        }
+        console.log(palindromicNumber(332233));
+        
+    </script>
+</body>
+</html>

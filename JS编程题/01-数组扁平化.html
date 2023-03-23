@@ -21,8 +21,8 @@
             return rest
         }
 
-        // 方法二：使用map遍历数组，使用concat合并数组
-        function mapFn(arr) {
+        // 方法二：使用reduce遍历数组，使用concat合并数组
+        function reducepFn(arr) {
             return arr.reduce((pre, item) => { return pre.concat(Array.isArray(item) ? fn(item) : item) }, [])
         }
 

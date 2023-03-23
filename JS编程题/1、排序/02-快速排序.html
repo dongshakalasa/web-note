@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=\, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //三个参数
+            const quicksort = (arr, left, right) => {
+                if (left < right) {
+                    var i = left; var j = right;
+                    //哨兵  参照数 a
+                    var a = arr[left];
+
+                    while (i < j) {
+                        while (i < j && arr[j] >= a) // 从右至左找小于a的值
+                            j--;
+                        if (i < j)
+                            arr[i++] = arr[j];
+                        while (i < j && arr[i] < a)// 从左至右找大于a的值
+                            i++;
+                        if (i < j)
+                            arr[j--] = arr[i];
+                    }
+                    arr[i] = a;
+                    // 递归a 左右两边的子数组
+                    quicksort(arr, left, i - 1);
+                    quicksort(arr, i + 1, right);
+                    return arr
+                }
+            }
+            var b = quicksort([7, 5, 1, 9, 13, 11, 3], 0, 6);
+            console.log(b);
+    </script>
+</body>
+</html>

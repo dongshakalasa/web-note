@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="email" list="suffix" />
+    <datalist id="suffix">
+        <option value="*@qq.com">
+        <option value="*@163.com">
+        <option value="*@gmail.com">
+        <option value="*@yahoo.com.cn">
+        <option value="*@126.com">
+    </datalist>
+    
+    <script>
+        const input = document.querySelector('input')
+        const datalist = document.querySelector('datalist')
+        const options = datalist.querySelectorAll('option')
+        const datalistInnerHtml = datalist.innerHTML
+
+        input.addEventListener('input', function () {
+            if (!this.value.includes('@')) {
+                datalist.innerHTML = datalistInnerHtml.replace(/\*/g, this.value)
+            }
+        })
+    </script>
+</body>
+</html>

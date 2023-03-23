@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function flatReduce(arr) {
+            arr.reduce((pre,item)=>{
+                return pre.concat(Array.isArray(item)?flatReduce(item):item)
+            },[])
+        }
+
+        function flatForEach(arr){
+            let rest = []
+            arr.forEach(item => {
+                if(item instanceof Array) {
+                    rest = rest.concat(flatForEach(item))
+                }
+                rest.push(item)
+            });
+            return rest
+        }
+
+        function flat(arr){
+            return arr.flat(Infinity)
+        }
+
+        function flatJSON(arr){
+            return JSON.parse('['+(JSON.stringify(arr).replace(/\[|\]/g,''))+']')
+        }
+    </script>
+</body>
+</html>
